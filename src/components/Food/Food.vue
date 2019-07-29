@@ -3,7 +3,7 @@
   <div class='header'>
     <div class="head-item">
         <ul>
-          <li style="flex-grow:5"><span class="icon iconfont">&#xe697;</span>上海浦东新区</li>
+          <li style="flex-grow:5"><span class="icon iconfont">&#xe697;</span>上海</li>
           <li style="flex-grow:1"><span class="icon iconfont">&#xe65d;</span>扫码</li>
           <li style="flex-grow:1"><span class="icon iconfont">&#xe69a;</span>28度</li>
         </ul>
@@ -81,8 +81,7 @@
 
 <script>
 import { Grid, GridItem, Swiper, Search } from 'vux'
-import Data from '../../basedata.json'
-import Card from '@/components/Card'
+import Card from '../Food/Card.vue'
 const imgList = [
   'http://img0.imgtn.bdimg.com/it/u=178230438,2028218868&fm=26&gp=0.jpg',
   'http://img5.imgtn.bdimg.com/it/u=655130840,1265809887&fm=26&gp=0.jpg',
@@ -97,7 +96,7 @@ export default {
   data () {
     return {
       data_list: demoList,
-      cardinfo: Data.cardinfo
+      cardinfo: []
     }
   },
   components: {
@@ -106,58 +105,70 @@ export default {
     Swiper,
     Search,
     Card
+  },
+  beforeMount () {
+    this.getData()
+  },
+  methods: {
+    getData () {
+      this.axios.get('/api/cardinfo')
+        .then((response) => {
+          this.cardinfo = response.data.data
+        }
+        )
+    }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
-.header{
-  background-color: black;
-  width: 100%;
-  height: 15%;
-  position: fixed;
-  top: 0%;
-  z-index:1;
+<style scoped lang="less">
+#Food {
+  .header {
+    background-color: black;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    z-index: 1;
+    .iconfont{
+      font-size:20px;
+      margin:5px;
+    }
+    }
+  .main{
+    padding-top: 80px;
+    }
+  ul {
+    list-style: none;
+    width: 100%;
+    height: 5%;
+    padding: 0;
+    margin:0;
+    display: flex;
+    align-content:space-between;
+  }
+  li {
+    display: inline-block;
+    color:white;
+    padding: 5px;
+    text-align: left;
+  }
+  input{
+    width: 80%;
+    border-radius: 15px;
+    margin: 10px;
+    height: 20px;
+  }
+  .grid5{
+    display:flex;
+    flex-wrap: wrap;
+  }
+  .grid5-item{
+    box-sizing:border-box;
+    display: inline-block;
+    width:20%;
+    padding:2vw;
+  }
 }
-.main{
-  margin-top: 20%;
-}
-h1, h2 {
-  font-weight: normal;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-  display: flex;
-  align-content:space-between;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-  color:white;
-  align-items:center;
-}
-a {
-  color: #42b983;
-}
-input{
-  width: 90%;
-  border-radius: 15px;
-  margin: 20px;
-  height: 20px;
-}
-.swiper-demo-img img {
-  width: 100%;
-}
-.grid5{
-  display:flex;
-  flex-wrap: wrap;
-  margin:10px;
-}
-.grid5-item{
-  width:15% ;
-  display: inline-block;
-  margin:5px 10px;
-}
+
 </style>

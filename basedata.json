@@ -52,8 +52,537 @@
         "id": "card10"
     }
     ],
+    "storeinfo": [
+        {
+          "shopId": "shop1",
+          "name": "粥店",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 1,
+              "description": "VC无限橙果汁全场8折"
+            },
+            {
+              "type": 2,
+              "description": "单人精彩套餐"
+            }
+          ]
+        },
+        {
+          "shopId": "shop2",
+          "name": "麦当劳",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 1000,
+          "supports": [
+            {
+              "type": 3,
+              "description": "该商家支持发票,请下单写好发票抬头"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop3",
+          "name": "冒菜",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 30,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 1020,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop4",
+          "name": "火锅",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 3,
+              "description": "该商家支持发票,请下单写好发票抬头"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop5",
+          "name": "烧烤",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            }
+          ]
+        }, {
+          "shopId": "shop6",
+          "name": "甜点",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 2,
+              "description": "单人精彩套餐"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop7",
+          "name": "粥店",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 1,
+              "description": "VC无限橙果汁全场8折"
+            },
+            {
+              "type": 2,
+              "description": "单人精彩套餐"
+            }
+          ]
+        },
+        {
+          "shopId": "shop8",
+          "name": "麦当劳",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 1000,
+          "supports": [
+            {
+              "type": 3,
+              "description": "该商家支持发票,请下单写好发票抬头"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop9",
+          "name": "冒菜",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 30,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 1020,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop10",
+          "name": "火锅",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 3,
+              "description": "该商家支持发票,请下单写好发票抬头"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop11",
+          "name": "烧烤",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            }
+          ]
+        }, {
+          "shopId": "shop13",
+          "name": "甜点",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 2,
+              "description": "单人精彩套餐"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop14",
+          "name": "火锅",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 3,
+              "description": "该商家支持发票,请下单写好发票抬头"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop15",
+          "name": "烧烤",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            }
+          ]
+        }, {
+          "shopId": "shop16",
+          "name": "甜点",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 2,
+              "description": "单人精彩套餐"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop17",
+          "name": "火锅",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 3,
+              "description": "该商家支持发票,请下单写好发票抬头"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop18",
+          "name": "烧烤",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            }
+          ]
+        }, {
+          "shopId": "shop19",
+          "name": "甜点",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 2,
+              "description": "单人精彩套餐"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop20",
+          "name": "火锅",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 3,
+              "description": "该商家支持发票,请下单写好发票抬头"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        },
+        {
+          "shopId": "shop21",
+          "name": "烧烤",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            }
+          ]
+        }, {
+          "shopId": "shop22",
+          "name": "甜点",
+          "imgurl": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",
+          "deliveryTime": 38,
+          "score": 4.2,
+          "serviceScore": 4.1,
+          "foodScore": 4.3,
+          "rankRate": 69.2,
+          "minPrice": 20,
+          "deliveryPrice": 4,
+          "ratingCount": 24,
+          "sellCount": 90,
+          "supports": [
+            {
+              "type": 0,
+              "description": "在线支付满28减5"
+            },
+            {
+              "type": 2,
+              "description": "单人精彩套餐"
+            },
+            {
+              "type": 4,
+              "description": "已加入“外卖保”计划,食品安全保障"
+            }
+          ]
+        }
+      ],
     "seller": {
-        "name": "明明不在（回龙观）",
+        "name": "粥店",
         "description": "蜂鸟专送",
         "deliveryTime": 38,
         "score": 4.2,
@@ -77,14 +606,6 @@
         {
             "type": 2,
             "description": "单人精彩套餐"
-        },
-        {
-            "type": 3,
-            "description": "该商家支持发票,请下单写好发票抬头"
-        },
-        {
-            "type": 4,
-            "description": "已加入“外卖保”计划,食品安全保障"
         }
         ],
         "avatar": "http://static.galileo.xiaojukeji.com/static/tms/seller_avatar_256px.jpg",

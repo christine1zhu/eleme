@@ -10,6 +10,16 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin')
 const portfinder = require('portfinder')
 
+const express = require('express')
+const app = express()
+const appData = require('../basedata.json')
+const storeinfo = appData.storeinfo
+const cardinfo = appData.cardinfo
+const seller =appData.seller
+const goods =appData.goods
+const apiRoutes = express.Router()
+app.use('/api', apiRoutes)
+
 const HOST = process.env.HOST
 const PORT = process.env.PORT && Number(process.env.PORT)
 
@@ -42,6 +52,32 @@ const devWebpackConfig = merge(baseWebpackConfig, {
     quiet: true, // necessary for FriendlyErrorsPlugin
     watchOptions: {
       poll: config.dev.poll,
+    },
+    before(app) {
+      app.get('/api/storeinfo', (req, res) => {
+        res.json({
+          errno: 0,
+          data: storeinfo
+        })
+      }),
+      app.get('/api/cardinfo', (req, res) => {
+        res.json({
+          errno: 0,
+          data: cardinfo
+        })
+      }),
+      app.get('/api/seller', (req, res) => {
+        res.json({
+          errno: 0,
+          data: seller
+        })
+      }),
+      app.get('/api/goods', (req, res) => {
+        res.json({
+          errno: 0,
+          data: goods
+        })
+      })
     }
   },
   plugins: [

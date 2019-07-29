@@ -33,12 +33,22 @@ module.exports = {
      */
 
     // https://webpack.js.org/configuration/devtool/#development
-    devtool: 'cheap-module-eval-source-map',
+     devtool: 'cheap-module-eval-source-map',
 
     // If you have problems debugging vue-files in devtools,
     // set this to false - it *may* help
     // https://vue-loader.vuejs.org/en/options.html#cachebusting
     cacheBusting: true,
+    // 跨域请求
+    proxyTable: {
+      '/eleme': {
+        target: 'http://localhost:8668',  //目标接口域名
+        changeOrigin: true,  //是否跨域
+        pathRewrite: {
+          '^/eleme': '/'   //重写接口
+        }
+      }
+    },
 
     cssSourceMap: true
   },
