@@ -1,8 +1,6 @@
 <template>
   <div id="app">
-    <keep-alive >
       <router-view></router-view>
-    </keep-alive>
     <div class="buttom" v-show="this.$route.meta.keepAlive">
       <ul class="buttom-nav">
         <li class="buttom-item" v-for="(item,index) in datalist" :key="index">
@@ -19,7 +17,6 @@
 </template>
 
 <script>
-import { Tabbar, TabbarItem } from 'vux'
 const baseList = [
   { icon: '&#xe722;', info: '外卖', link: '/food' },
   { icon: '&#xe602;', info: '超市', link: '/market' },
@@ -33,10 +30,6 @@ export default {
     return {
       datalist: baseList
     }
-  },
-  components: {
-    Tabbar,
-    TabbarItem
   }
 }
 </script>

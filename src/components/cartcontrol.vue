@@ -1,7 +1,7 @@
 <template>
     <div class="cartcontrol">
-        <div class="decrease" v-show='food.count>0' @click="delcart">-</div>
-        <div class="count" v-show='food.count>0'>{{food.count}}</div>
+        <div class="decrease" v-show='curfood.count>0' @click="delcart">-</div>
+        <div class="count" v-show='curfood.count>0'>{{curfood.count}}</div>
         <div class="add" @click="addcart">+</div>
     </div>
 </template>
@@ -15,25 +15,30 @@ export default {
       type: Object
     }
   },
+  data () {
+    return {
+      curfood: this.$store.state.food_chosen.find((item) => { return item.id === this.food.id }) || this.food
+    }
+  },
   methods: {
     addcart () {
       console.log('click')
-      if (!this.food.count) {
-        Vue.set(this.food, 'count', 1)
-        this.$store.commit('ADD', this.food)
+      if (!this.curfood.count) {
+        Vue.set(this.curfood, 'count', 1)
+        this.$store.commit('ADD', this.curfood)
       } else {
-        this.$store.commit('DEL', this.food)
-        this.food.count += 1
-        this.$store.commit('ADD', this.food)
+        this.$store.commit('DEL', this.curfood)
+        this.curfood.count += 1
+        this.$store.commit('ADD', this.curfood)
       }
       // console.log(this.$store.state.food_chosen)
     },
     delcart () {
     //   console.log('del')
-      this.$store.commit('DEL', this.food)
-      this.food.count -= 1
-      if (this.food.count) {
-        this.$store.commit('ADD', this.food)
+      this.$store.commit('DEL', this.curfood)
+      this.curfood.count -= 1
+      if (this.curfood.count) {
+        this.$store.commit('ADD', this.curfood)
       }
     }
   }

@@ -7,6 +7,8 @@ import MyInfo from '@/components/MyInfo/MyInfo'
 import StoreList from '@/components/Food/StoreList'
 import FoodList from '@/components/Food/FoodList'
 import login from '@/components/login/login'
+import Pay from '@/components/Food/pay'
+
 Vue.use(Router)
 
 const router = new Router({
@@ -40,6 +42,11 @@ const router = new Router({
       meta: {keepAlive: true}
     },
     {
+      path: '/pay',
+      name: 'pay',
+      component: Pay
+    },
+    {
       path: '/login',
       name: 'login',
       component: login
@@ -63,11 +70,19 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  let user = sessionStorage.getItem('user')
-  if (user) {
-    next()
+  let user = String(sessionStorage.getItem('user'))
+  if (to.path === '/login') {
+    if (user === 'null' || user === 'undefined' || user === '') {
+      next()
+    } else {
+      next('/food')
+    }
   } else {
-    next('/login')
+    if (user === 'null' || user === '' || user === 'undefined') {
+      next('/login')
+    } else {
+      next()
+    }
   }
 })
 

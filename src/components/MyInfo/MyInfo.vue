@@ -6,7 +6,7 @@
     <div class="main">
       <div class="info">
         <ul class='info-list'>
-          <li class="name">{{username}}</li>
+          <li class="name">{{username || '欢迎登陆'}}</li>
           <li style="font-size:13px; margin: 10px 0">再忙，也要记得吃饭哟~</li>
           <li class="qiandao"><span class="icon iconfont">&#xe62e;</span>签到领十元红包</li>
         </ul>
@@ -28,7 +28,7 @@
       <div class='title'>修改用户名</div>
       <input class='name' type="text" v-model='username'>
       <p>用户名只能修改一次，5-24个字</p>
-      <input class='submit' type='button' value="确认修改" @click='quit'>
+      <input class='submit' type='button' value="确认修改" @click='changename'>
     </div>
   </div>
 </template>
@@ -39,7 +39,8 @@ export default {
   name: 'MyInfo',
   data () {
     return {
-      // user: this.$store.state.user,
+      userObj: {},
+      username: '',
       itemList: [
         {title: '我的收藏', icon: '&#xe60f;'},
         {title: '我的客服', icon: '&#xe673;'},
@@ -50,27 +51,37 @@ export default {
       Setting: false
     }
   },
-  computed: {
-    username: function () {
-      return sessionStorage.getItem('user') || ''
-    }
-  },
   components: {
     Group,
     Cell,
     Divider
   },
+  mounted () {
+    const userObj = JSON.parse(sessionStorage.getItem('user'))
+    this.userObj = userObj
+    this.username = userObj.name
+  },
   methods: {
     popout (e) {
-      console.log(e.target.innerText)
       if (e.target.innerText === '设置') {
         this.Setting = true
       }
     },
-    quit () {
+    changename () {
       this.Setting = false
-      this.$store.commit('ChangeName', this.username)
-      console.log(this.$store.state.user)
+      this.userObj.name = this.username
+      this.axios.post('/eleme/UpdateUser', this.qs.stringify(this.userObj))
+        .then(res => {
+          if (res.data) {
+            if (res.data === 1) {
+              sessionStorage.setItem('user', JSON.stringify(this.userObj))
+            } else {
+              alert('修改失败')
+            }
+          }
+        }).catch(error => {
+          console.log(error)
+        })
     }
   }
 }

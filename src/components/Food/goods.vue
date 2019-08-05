@@ -2,12 +2,12 @@
 <div class="goods">
     <div class="menu-scroller">
         <ul class="menu-list">
-            <li v-for="item in goodsList" class="menu-item" :key='item.name'>{{item.name}}</li>
+            <li v-for="item in goodsList" class="menu-item" :key='item.type'>{{item.type}}</li>
         </ul>
     </div>
     <div class="food-scroller">
         <ul class="food-list">
-            <li v-for=" item in goodsList" :key='item.name' class="food-list-item">
+            <li v-for=" item in goodsList" :key='item.type' class="food-list-item">
                 <ul class='foods'>
                     <li v-for="food in item.foods" :key='food.name' class="food-item">
                         <img class='image' :src="food.icon">
@@ -28,23 +28,51 @@
 
 <script>
 import cartcontrol from '../cartcontrol.vue'
-import shoppingcart from '../shoppingcart.vue'
 export default {
   name: 'Goods',
   data () {
     return {
-      goodsList: []
+      goodsList: [],
+      shopid: this.$route.params.shopId
     }
   },
   created () {
-    this.axios.get('/api/goods')
-      .then((response) => {
-        this.goodsList = response.data.data
+    //   本地json文件调用
+    // this.axios.get('/api/goods')
+    //   .then((response) => {
+    //     this.goodsList = response.data.data
+    //   })
+    this.axios.post('/eleme/goods', this.qs.stringify({shopid: this.shopid}))
+      .then((res) => {
+        let goodsarr = res.data
+        const data = []
+        goodsarr.forEach(item => {
+          let index = data.findIndex((e) => { return e.type === item.type })
+          if (index < 0) {
+            data.push({
+              type: item.type,
+              foods: [item]
+            })
+          } else {
+            data[index].foods.push(item)
+          }
+        })
+        this.goodsList = data
+        // const data = {}
+        // goodsarr.forEach(item => {
+        //   let type = String(item.type)
+        //   if (type in data) {
+        //     data[type].push(item)
+        //   } else {
+        //     data[type] = [item]
+        //   }
+        // })
+        // this.goodsList = data
+        console.log(this.goodsList)
       })
   },
   components: {
-    cartcontrol,
-    shoppingcart
+    cartcontrol
   },
   methods: {
     showpay () {
@@ -77,6 +105,9 @@ export default {
     }
     .food-scroller{
         flex:1;
+        .food-list .food-list-item:last-child .foods:last-child .food-item:last-child{
+          padding-bottom:40px;
+        }
         .food-item{
             display: flex;
             .image{

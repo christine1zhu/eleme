@@ -9,10 +9,11 @@ import store from './store/index.js'
 import VueScroller from 'vue-scroller'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import qs from 'qs'
 
 Vue.use(VueAxios, axios)
 Vue.use(VueScroller)
-
+Vue.prototype.qs = qs
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

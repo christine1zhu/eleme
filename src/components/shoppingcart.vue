@@ -1,7 +1,7 @@
 <template>
-<div class="shoppingcart">
-    <div class="pay">
-        <div class="sum" @click="showpay">去结算</div>
+<div class="shoppingcart" >
+    <div class="pay" @click.self="showpay">
+        <div class="sum" @click="topay">去结算</div>
     </div>
     <div class="shopcart-list" v-show="listShow">
         <div class="list-header">
@@ -20,7 +20,7 @@
                         <!-- <cartcontrol :food="food"></cartcontrol> -->
                     </div>
                 </li>
-                <li>总计¥</li>
+                <li>总计¥{{sum}}</li>
             </ul>
         </div>
     </div>
@@ -39,17 +39,33 @@ export default {
       foodList: []
     }
   },
+  props: {
+    seller: {
+      type: Object
+    }
+  },
   components: {
     cartcontrol
+  },
+  computed: {
+    sum: function () {
+      return this.foodList.reduce((pre, cur) => {
+        pre += cur.price * cur.count
+        return pre
+      }, 0)
+    }
   },
   methods: {
     showpay () {
       this.listShow = true
       this.foodList = this.$store.state.food_chosen ? this.$store.state.food_chosen : []
-      console.log(this.$store.state.food_chosen)
     },
     empty () {
       this.listShow = false
+    },
+    topay () {
+      this.$store.commit('SetSeller', this.seller)
+      this.$router.push({path: '/pay', query: { shopid: this.$route.params.shopId }})
     }
   }
 }
@@ -92,7 +108,6 @@ export default {
                     }
                 }
             }
-
         }
     }
     .pay{

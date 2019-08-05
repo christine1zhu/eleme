@@ -28,7 +28,7 @@
     <div class="grid3">
       <grid>
         <grid-item v-for="i in 3" :key="i">
-          <span class="grid-center">{{i}}</span>
+          <div class="grid-center"><img style="width:100%" :src='grid3_imgs[i-1]'></div>
         </grid-item>
       </grid>
     </div>
@@ -36,12 +36,12 @@
       <h4>优惠专区</h4>
       <grid>
         <grid-item  v-for="i in 2" :key="i">
-          <span class="grid-center">{{i}}</span>
+          <span class="grid-center"><img style="width:100%" :src='SaleZone2_imgs[i-1]'></span>
         </grid-item>
       </grid>
       <grid>
         <grid-item  v-for="i in 4" :key="i">
-          <span class="grid-center">{{i}}</span>
+          <span class="grid-center"><img style="width:100%" :src='SaleZone4_imgs[i-1]'></span>
         </grid-item>
       </grid>
     </div>
@@ -49,7 +49,7 @@
       <h4>专属推荐</h4>
       <grid>
         <grid-item  v-for="i in 2" :key="i">
-          <span class="grid-center">{{i}}</span>
+          <span class="grid-center"><img style="width:100%" :src='Special2_imgs[i-1]'></span>
         </grid-item>
       </grid>
     </div>
@@ -57,7 +57,7 @@
       <h4>优享大牌</h4>
       <grid>
         <grid-item  v-for="i in 3" :key="i">
-          <span class="grid-center">{{i}}</span>
+          <span class="grid-center"><img style="width:100%" :src='Great3_imgs[i-1]'></span>
         </grid-item>
       </grid>
     </div>
@@ -65,7 +65,7 @@
       <h4>到店自去</h4>
       <grid>
         <grid-item  v-for="i in 3" :key="i">
-          <span class="grid-center">{{i}}</span>
+          <span class="grid-center"><img style="width:100%" :src='GetFood3_imgs[i-1]'></span>
         </grid-item>
       </grid>
     </div>
@@ -96,9 +96,40 @@ export default {
   data () {
     return {
       data_list: demoList,
-      cardinfo: []
+      cardinfo: [],
+      grid3_imgs: [
+        'http://bpic.588ku.com/illus_water_img/19/05/28/0afafbb10f138208756013eadb2173c6.jpg!/fw/750/quality/99/unsharp/true/compress/true',
+        'http://bpic.588ku.com/illus_water_img/19/06/01/2cadabe78ed6510e30ed7b08e3855284.jpg!/fw/750/quality/99/unsharp/true/compress/true',
+        'http://bpic.588ku.com/illus_water_img/19/06/05/53b7d1cc73e12b20beb4d30f0254d8b2.jpg!/fw/750/quality/99/unsharp/true/compress/true'
+      ],
+      SaleZone2_imgs: [
+        'http://bpic.588ku.com/illus_water_img/19/05/27/25ce8ca8185a9a328f471af46967f72c.jpg!/fw/750/quality/99/unsharp/true/compress/true',
+        'http://bpic.588ku.com/illus_water_img/19/06/06/fc81b05be209cd2e321077f23a7ac4f7.jpg'
+      ],
+      SaleZone4_imgs: [
+        'http://bpic.588ku.com/element_origin_min_pic/19/03/06/db55b17c67563ee33d7c2b6e55522cb2.jpg',
+        '//bpic.588ku.com/element_origin_min_pic/19/03/05/36dec126a49e7819a8344a6f82806340.jpg',
+        '//bpic.588ku.com/element_origin_min_pic/19/03/06/bb45b53f04eeeb2b693689faf9dfd263.jpg',
+        '//bpic.588ku.com/element_origin_min_pic/19/03/06/aaaf77adc9245fdc4bf30c8cfdf0b87e.jpg'
+      ],
+      Special2_imgs: [
+        'http://bpic.588ku.com/illus_water_img/19/06/13/5c214670ffe8518c633d51df5989d490.jpg!/fw/750/quality/99/unsharp/true/compress/true',
+        'http://bpic.588ku.com/illus_water_img/19/06/14/620659d8fd5ff901ad9acb01f881b1e3.jpg!/fw/750/quality/99/unsharp/true/compress/true'
+      ],
+      Great3_imgs: [
+        '//bpic.588ku.com/illus_water_img/19/06/11/e8ba2ac3bf25f3896d2e927b8b76edd8.jpg!/fw/750/quality/99/unsharp/true/compress/true',
+        '//bpic.588ku.com/illus_water_img/19/06/01/a63e9a951378e107982422b81e9e2fd0.jpg!/fw/750/quality/99/unsharp/true/compress/true',
+        '//bpic.588ku.com/illus_water_img/19/06/04/bf00dcc2a498cf054bc49f128ed15a8f.jpg!/fw/750/quality/99/unsharp/true/compress/true'
+      ],
+      GetFood3_imgs: [
+        '//bpic.588ku.com/illus_water_img/19/06/11/79a285cf05e4b2965ebcdcecc340cb1f.jpg!/fw/750/quality/99/unsharp/true/compress/true',
+        '//bpic.588ku.com/illus_water_img/19/06/11/ea80c7db4d3c996a9d4fcf1533271bdc.jpg!/fw/750/quality/99/unsharp/true/compress/true',
+        '//bpic.588ku.com/illus_water_img/19/05/28/701c36696d86e7d1f9e1d05b11fb3804.jpg!/fw/750/quality/99/unsharp/true/compress/true'
+      ]
+
     }
   },
+
   components: {
     Grid,
     GridItem,
@@ -111,11 +142,17 @@ export default {
   },
   methods: {
     getData () {
-      this.axios.get('/api/cardinfo')
-        .then((response) => {
-          this.cardinfo = response.data.data
-        }
-        )
+      // 调用内部接口获取静态json文件
+      // this.axios.get('/api/cardinfo')
+      //   .then((response) => {
+      //     this.cardinfo = response.data.data
+      //   }
+      //   )
+      // 调用后台数据
+      this.axios.get('/eleme/cardinfo')
+        .then(res => {
+          this.cardinfo = res.data
+        })
     }
   }
 }
@@ -168,6 +205,12 @@ export default {
     display: inline-block;
     width:20%;
     padding:2vw;
+  }
+  .weui-grid{
+    padding:5px;
+  }
+  h4{
+    margin: 10px 0px;
   }
 }
 

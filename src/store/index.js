@@ -5,8 +5,9 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
+    seller: {},
     food_chosen: [],
-    user: ''
+    user: {}
   },
   mutations: {
     // SET_TOKEN: (state, data) => {
@@ -21,8 +22,11 @@ export default new Vuex.Store({
       state.food_chosen.splice(index, 1)
     },
     ChangeUser: (state, data) => {
-      state.user = data
-      sessionStorage.setItem('user', data)
+      Object.assign(state.user, data)
+      sessionStorage.setItem('user', JSON.stringify(state.user))
+    },
+    SetSeller: (state, data) => {
+      Object.assign(state.seller, data)
     }
   }
 })

@@ -8,14 +8,14 @@
     <scroller class="storelist" :on-infinite="infinite"  :on-refresh = "refresh" ref="my_scroller">
       <div class="store" v-for='(item,index) in storeInfo' :key="index" @click="goShop(item)">
       <div class="left">
-          <img style="width:100%" :src="item.imgurl" >
+          <img style="width:100%" :src="item.avatar" >
       </div>
       <div class="right">
         <div id='name'>{{item.name}}</div>
         <div><span style='color:red'>{{item.score}}</span><span>月售{{item.sellCount}}</span></div>
         <div><span>起送¥{{item.minPrice}}</span><span>配送¥{{item.deliveryPrice}}</span></div>
         <div>
-          <span v-for='(i,index) in item.supports' :key='index'>{{i.description}}</span>
+          <span v-for='(i,index) in item.support' :key='index'>{{i}}</span>
         </div>
       </div>
       </div>
@@ -38,12 +38,12 @@ export default {
   },
   methods: {
     getData (offset, fn = this.fn) {
-      this.axios.get('/api/storeinfo')
-        .then((response) => {
+      this.axios.get('/eleme/storeinfo', {params: {cardId: this.$route.params.CardId}})
+        .then((res) => {
           for (let i = 0; i < fn; i++) {
-            this.storeInfo.push(response.data.data[i + offset])
+            let supports = res.data[i + offset].support.trim().split(',')
+            this.storeInfo.push(Object.assign(res.data[i + offset], {support: supports}))
           }
-          // console.log(this.storeInfo)
           this.offset = offset + fn
         }, (err) => {
           console.log(err)
@@ -54,7 +54,7 @@ export default {
     },
     goShop (i) {
       this.$router.push({
-        path: '/' + this.$route.params.CardId + '/' + i.shopId
+        path: '/' + this.$route.params.CardId + '/' + i.shopid
       })
     },
     refresh (done) {
