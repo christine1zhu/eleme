@@ -17,16 +17,19 @@
 </template>
 
 <script>
+import { mapMutations } from 'vuex'
 export default {
   data () {
     return {
       loginForm: {
         username: '',
         password: ''
-      }
+      },
+      userToken: ''
     }
   },
   methods: {
+    ...mapMutations(['changeLogin']),
     login () {
       let _this = this
       if (this.loginForm.username === '' || this.loginForm.password === '') {
@@ -34,9 +37,11 @@ export default {
       } else {
         this.axios.post('/eleme/login', this.qs.stringify(_this.loginForm)).then(res => {
           if (res.data) {
-            sessionStorage.setItem('user', JSON.stringify(res.data))
+            // res.data.data.body.token数据要看一下！！
+            _this.userToken = res.data.token
+            sessionStorage.setItem('user', JSON.stringify(res.data.user))
+            _this.changeLogin({ Authorization: _this.userToken })
             _this.$router.push('/food')
-            alert('登陆成功')
           } else {
             alert('账号或密码错误')
           }

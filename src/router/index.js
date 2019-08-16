@@ -1,7 +1,8 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import Food from '@/components/Food/Food'
-import SuperMarket from '@/components/SuperMarket/SuperMarket'
+import Chat from '@/components/Chat/Chat'
+import Chatroom from '@/components/Chat/Chatroom'
 import Order from '@/components/Order/Order'
 import MyInfo from '@/components/MyInfo/MyInfo'
 import StoreList from '@/components/Food/StoreList'
@@ -24,10 +25,16 @@ const router = new Router({
       meta: {keepAlive: true}
     },
     {
-      path: '/market',
-      name: 'SuperMarket',
-      component: SuperMarket,
+      path: '/chat',
+      name: 'Chat',
+      component: Chat,
       meta: {keepAlive: true}
+    },
+    {
+      path: '/chatroom',
+      name: 'Chatroom',
+      component: Chatroom,
+      meta: {keepAlive: false}
     },
     {
       path: '/order',
@@ -70,15 +77,11 @@ const router = new Router({
 })
 
 router.beforeEach((to, from, next) => {
-  let user = String(sessionStorage.getItem('user'))
   if (to.path === '/login') {
-    if (user === 'null' || user === 'undefined' || user === '') {
-      next()
-    } else {
-      next('/food')
-    }
+    next()
   } else {
-    if (user === 'null' || user === '' || user === 'undefined') {
+    let token = sessionStorage.getItem('Authorization')
+    if (token === 'null' || token === '') {
       next('/login')
     } else {
       next()

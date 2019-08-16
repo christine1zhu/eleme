@@ -1,6 +1,7 @@
 <template>
 <div class="shoppingcart" >
-    <div class="pay" @click.self="showpay">
+    <div class="pay" >
+        <span class="iconfont" style="color:white" @click="showpay">&#xe602;</span>
         <div class="sum" @click="topay">去结算</div>
     </div>
     <div class="shopcart-list" v-show="listShow">
@@ -114,6 +115,11 @@ export default {
         height: 40px;
         background-color: #2b333b;
         z-index: 1;
+        .iconfont{
+          position: absolute;
+          left: 5vw;
+          font-size: 40px;
+        }
         .sum{
             line-height: 40px;
             width: 100px;

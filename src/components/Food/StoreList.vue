@@ -1,9 +1,9 @@
 <template>
   <div id="Storelist">
     <ul class="header">
-      <li @click='goBack'>返回</li>
+      <li @click='goBack'><span class="iconfont" style="color:white;font-size:20px">&#xe677;</span></li>
       <li>美食</li>
-      <li>搜索</li>
+      <li><span class="iconfont" style="color:white;font-size:20px">&#xe638;</span></li>
     </ul>
     <scroller class="storelist" :on-infinite="infinite"  :on-refresh = "refresh" ref="my_scroller">
       <div class="store" v-for='(item,index) in storeInfo' :key="index" @click="goShop(item)">
@@ -38,12 +38,12 @@ export default {
   },
   methods: {
     getData (offset, fn = this.fn) {
-      this.axios.get('/eleme/storeinfo', {params: {cardId: this.$route.params.CardId}})
+      this.axios.get('/eleme/storeinfo', {params: {cardId: this.$route.params.CardId, offset: offset, fn: fn}})
         .then((res) => {
-          for (let i = 0; i < fn; i++) {
-            let supports = res.data[i + offset].support.trim().split(',')
-            this.storeInfo.push(Object.assign(res.data[i + offset], {support: supports}))
-          }
+          res.data.forEach(element => {
+            let supports = element.support.trim().split(',')
+            this.storeInfo.push(Object.assign(element, {support: supports}))
+          })
           this.offset = offset + fn
         }, (err) => {
           console.log(err)
@@ -85,12 +85,14 @@ export default {
   padding: 0%;
   margin: 0%;
   top:0px;
+  height:6vh;
   width: 100%;
   z-index: 101;
   list-style: none;
   li{
     display: inline-block;
     width: 25%;
+    margin:5px;
     }
   }
 .store{
@@ -108,7 +110,7 @@ export default {
   margin-left:10px;
 }
 .storelist{
-  padding-top:43px;
+  padding-top:6vh;
 }
 span{
   font-size: 10px;

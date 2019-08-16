@@ -5,7 +5,7 @@
             <ul class="info">
             <li><span>{{seller.name}}</span></li>
             <li><span>评价{{seller.score}}</span><span>月售{{seller.sellCount}}</span><span>{{seller.description || ''}}/{{seller.deliveryTime}}分钟送达</span></li>
-            <li v-if="seller.support"><span>{{seller.support[0]}}</span><span>{{seller.support.length}}个</span><span @click="ShowDetails">详情</span></li>
+            <li v-if="seller.support"><span>{{seller.support[0]}}</span><span>{{seller.support.length}}个</span><span @click="ShowDetails"><span class="iconfont">&#xe60d;</span></span></li>
             </ul>
         </div>
         <div class="details" v-show="detailShow">

@@ -1,10 +1,8 @@
 <template>
   <div class='seller'>
     <ul class="header">
-      <li @click="goBack">返回</li>
-      <li>搜索</li>
-      <li>分享</li>
-      <li>拼单</li>
+      <li @click="goBack"><span class="iconfont" style="font-size:20px;text-align:left">&#xe677;</span></li>
+      <li><span class="iconfont" style="font-size:20px">&#xe638;</span></li>
     </ul>
     <div class="mid">
       <storeinfo :seller='seller'></storeinfo>
@@ -83,17 +81,18 @@ export default {
       margin: 0%;
       top:0px;
       width: 100%;
+      height: 6vh;
       list-style: none;
+      display: flex;
+      justify-content: space-between;
       li{
-        display: inline-block;
-        width: 20%;
-        padding: 5px;
+        padding: 5px 5vw;
       }
     }
   .mid{
     position: fixed;
     left:0px;
-    top:30px;
+    top:6vh;
     z-index:1;
   }
   .main{

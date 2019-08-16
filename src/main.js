@@ -7,13 +7,20 @@ import '@/assets/icons/iconfont.css'
 import '@/assets/icons/iconfont.js'
 import store from './store/index.js'
 import VueScroller from 'vue-scroller'
-import axios from 'axios'
-import VueAxios from 'vue-axios'
+import getSocket from './util/websocket'
+import instance from './util/http'
+// import axios from 'axios'
+// import VueAxios from 'vue-axios'
+// Vue.use(VueAxios, axios)
+// 全局使用axios方法如上注释
 import qs from 'qs'
+import animated from 'animate.css'
 
-Vue.use(VueAxios, axios)
+Vue.use(animated)
 Vue.use(VueScroller)
 Vue.prototype.qs = qs
+Vue.prototype.socket = getSocket()
+Vue.prototype.axios = instance
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */

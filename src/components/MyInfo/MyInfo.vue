@@ -10,7 +10,7 @@
           <li style="font-size:13px; margin: 10px 0">再忙，也要记得吃饭哟~</li>
           <li class="qiandao"><span class="icon iconfont">&#xe62e;</span>签到领十元红包</li>
         </ul>
-        <img class='photo' src="@/assets/logo.png">
+        <img class='photo' :src='img'>
       </div>
       <group class="choices" >
           <cell class="choices-item"  v-for='(item, index) in itemList' :title='item.title' is-link :key='index' @click.native="popout">
@@ -41,6 +41,7 @@ export default {
     return {
       userObj: {},
       username: '',
+      img: '',
       itemList: [
         {title: '我的收藏', icon: '&#xe60f;'},
         {title: '我的客服', icon: '&#xe673;'},
@@ -60,6 +61,7 @@ export default {
     const userObj = JSON.parse(sessionStorage.getItem('user'))
     this.userObj = userObj
     this.username = userObj.name
+    this.img = userObj.img
   },
   methods: {
     popout (e) {

@@ -37,7 +37,6 @@
         <confirm v-model="show"
         :title="msg"
         @on-confirm="onConfirm"
-        @on-show="onShow"
         >
           <p style="text-align:center">确认支付？</p>
         </confirm>
@@ -91,6 +90,7 @@ export default {
           .then(res => {
             if (res.data === 1) {
               alert('交易成功')
+              this.$router.push('/order')
             } else {
               alert('交易失败')
             }
