@@ -15,7 +15,7 @@
       </div>
       <div class='body'>
         <div class='goods-page' v-if='index===0'>
-          <Goods></Goods>
+          <Goods style="padding-top:30vh"></Goods>
           <div class="goods-buttom">
               <shoppingcart :seller='seller'></shoppingcart>
           </div>
@@ -77,6 +77,7 @@ export default {
       background-color:#287DFA;
       color: aliceblue;
       position: fixed;
+      z-index: 1000;
       padding: 0%;
       margin: 0%;
       top:0px;
@@ -93,11 +94,12 @@ export default {
     position: fixed;
     left:0px;
     top:6vh;
-    z-index:1;
+    z-index:2;
   }
   .main{
     .main-tab{
       position: fixed;
+      z-index: 1;
       top:120px;
       width: 100%;
     }
