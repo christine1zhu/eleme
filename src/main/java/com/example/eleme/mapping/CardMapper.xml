@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.eleme.dao.CardMapper">
+  <resultMap id="BaseResultMap" type="com.example.eleme.pojo.Card">
+    <result column="icon" jdbcType="VARCHAR" property="icon" />
+    <result column="id" jdbcType="VARCHAR" property="id" />
+    <result column="msg" jdbcType="VARCHAR" property="msg" />
+  </resultMap>
+  <insert id="insert" parameterType="com.example.eleme.pojo.Card">
+    insert into cardinfo (icon, id, msg
+      )
+    values (#{icon,jdbcType=VARCHAR}, #{id,jdbcType=VARCHAR}, #{msg,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.eleme.pojo.Card">
+    insert into cardinfo
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="icon != null">
+        icon,
+      </if>
+      <if test="id != null">
+        id,
+      </if>
+      <if test="msg != null">
+        msg,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="icon != null">
+        #{icon,jdbcType=VARCHAR},
+      </if>
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="msg != null">
+        #{msg,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+	<select id="selectall" resultMap="BaseResultMap">
+	select
+	*
+	from cardinfo
+  </select>
+</mapper>

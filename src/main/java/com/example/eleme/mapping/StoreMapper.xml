@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.eleme.dao.StoreMapper">
+  <resultMap id="BaseResultMap" type="com.example.eleme.pojo.Store">
+    <id column="shopid" jdbcType="VARCHAR" property="shopid" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="deliveryTime" jdbcType="INTEGER" property="deliveryTime" />
+    <result column="score" jdbcType="REAL" property="score" />
+    <result column="sellCount" jdbcType="INTEGER" property="sellCount" />
+    <result column="bulletin" jdbcType="VARCHAR" property="bulletin" />
+    <result column="ratingCount" jdbcType="INTEGER" property="ratingCount" />
+    <result column="serviceScore" jdbcType="REAL" property="serviceScore" />
+    <result column="rankRate" jdbcType="REAL" property="rankRate" />
+    <result column="minPrice" jdbcType="REAL" property="minPrice" />
+    <result column="deliveryPrice" jdbcType="REAL" property="deliveryPrice" />
+    <result column="foodScore" jdbcType="REAL" property="foodScore" />
+    <result column="avatar" jdbcType="VARCHAR" property="avatar" />
+    <result column="infos" jdbcType="VARCHAR" property="infos" />
+    <result column="pics" jdbcType="VARCHAR" property="pics" />
+    <result column="support" jdbcType="CHAR" property="support" />
+    <result column="cardid" jdbcType="VARCHAR" property="cardid" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    shopid, name, description, deliveryTime, score, sellCount, bulletin, ratingCount, 
+    serviceScore, rankRate, minPrice, deliveryPrice, foodScore, avatar, infos, pics, 
+    support, cardid
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from store_info
+    where shopid = #{shopid,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from store_info
+    where shopid = #{shopid,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.eleme.pojo.Store">
+    insert into store_info (shopid, name, description, 
+      deliveryTime, score, sellCount, 
+      bulletin, ratingCount, serviceScore, 
+      rankRate, minPrice, deliveryPrice, 
+      foodScore, avatar, infos, 
+      pics, support, cardid)
+    values (#{shopid,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{deliveryTime,jdbcType=INTEGER}, #{score,jdbcType=REAL}, #{sellCount,jdbcType=INTEGER}, 
+      #{bulletin,jdbcType=VARCHAR}, #{ratingCount,jdbcType=INTEGER}, #{serviceScore,jdbcType=REAL}, 
+      #{rankRate,jdbcType=REAL}, #{minPrice,jdbcType=REAL}, #{deliveryPrice,jdbcType=REAL}, 
+      #{foodScore,jdbcType=REAL}, #{avatar,jdbcType=VARCHAR}, #{infos,jdbcType=VARCHAR}, 
+      #{pics,jdbcType=VARCHAR}, #{support,jdbcType=CHAR}, #{cardid,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.eleme.pojo.Store">
+    insert into store_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="shopid != null">
+        shopid,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="description != null">
+        description,
+      </if>
+      <if test="deliveryTime != null">
+        deliveryTime,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="sellCount != null">
+        sellCount,
+      </if>
+      <if test="bulletin != null">
+        bulletin,
+      </if>
+      <if test="ratingCount != null">
+        ratingCount,
+      </if>
+      <if test="serviceScore != null">
+        serviceScore,
+      </if>
+      <if test="rankRate != null">
+        rankRate,
+      </if>
+      <if test="minPrice != null">
+        minPrice,
+      </if>
+      <if test="deliveryPrice != null">
+        deliveryPrice,
+      </if>
+      <if test="foodScore != null">
+        foodScore,
+      </if>
+      <if test="avatar != null">
+        avatar,
+      </if>
+      <if test="infos != null">
+        infos,
+      </if>
+      <if test="pics != null">
+        pics,
+      </if>
+      <if test="support != null">
+        support,
+      </if>
+      <if test="cardid != null">
+        cardid,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="shopid != null">
+        #{shopid,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTime != null">
+        #{deliveryTime,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=REAL},
+      </if>
+      <if test="sellCount != null">
+        #{sellCount,jdbcType=INTEGER},
+      </if>
+      <if test="bulletin != null">
+        #{bulletin,jdbcType=VARCHAR},
+      </if>
+      <if test="ratingCount != null">
+        #{ratingCount,jdbcType=INTEGER},
+      </if>
+      <if test="serviceScore != null">
+        #{serviceScore,jdbcType=REAL},
+      </if>
+      <if test="rankRate != null">
+        #{rankRate,jdbcType=REAL},
+      </if>
+      <if test="minPrice != null">
+        #{minPrice,jdbcType=REAL},
+      </if>
+      <if test="deliveryPrice != null">
+        #{deliveryPrice,jdbcType=REAL},
+      </if>
+      <if test="foodScore != null">
+        #{foodScore,jdbcType=REAL},
+      </if>
+      <if test="avatar != null">
+        #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="infos != null">
+        #{infos,jdbcType=VARCHAR},
+      </if>
+      <if test="pics != null">
+        #{pics,jdbcType=VARCHAR},
+      </if>
+      <if test="support != null">
+        #{support,jdbcType=CHAR},
+      </if>
+      <if test="cardid != null">
+        #{cardid,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.eleme.pojo.Store">
+    update store_info
+    <set>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="description != null">
+        description = #{description,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryTime != null">
+        deliveryTime = #{deliveryTime,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=REAL},
+      </if>
+      <if test="sellCount != null">
+        sellCount = #{sellCount,jdbcType=INTEGER},
+      </if>
+      <if test="bulletin != null">
+        bulletin = #{bulletin,jdbcType=VARCHAR},
+      </if>
+      <if test="ratingCount != null">
+        ratingCount = #{ratingCount,jdbcType=INTEGER},
+      </if>
+      <if test="serviceScore != null">
+        serviceScore = #{serviceScore,jdbcType=REAL},
+      </if>
+      <if test="rankRate != null">
+        rankRate = #{rankRate,jdbcType=REAL},
+      </if>
+      <if test="minPrice != null">
+        minPrice = #{minPrice,jdbcType=REAL},
+      </if>
+      <if test="deliveryPrice != null">
+        deliveryPrice = #{deliveryPrice,jdbcType=REAL},
+      </if>
+      <if test="foodScore != null">
+        foodScore = #{foodScore,jdbcType=REAL},
+      </if>
+      <if test="avatar != null">
+        avatar = #{avatar,jdbcType=VARCHAR},
+      </if>
+      <if test="infos != null">
+        infos = #{infos,jdbcType=VARCHAR},
+      </if>
+      <if test="pics != null">
+        pics = #{pics,jdbcType=VARCHAR},
+      </if>
+      <if test="support != null">
+        support = #{support,jdbcType=CHAR},
+      </if>
+      <if test="cardid != null">
+        cardid = #{cardid,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where shopid = #{shopid,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.eleme.pojo.Store">
+    update store_info
+    set name = #{name,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      deliveryTime = #{deliveryTime,jdbcType=INTEGER},
+      score = #{score,jdbcType=REAL},
+      sellCount = #{sellCount,jdbcType=INTEGER},
+      bulletin = #{bulletin,jdbcType=VARCHAR},
+      ratingCount = #{ratingCount,jdbcType=INTEGER},
+      serviceScore = #{serviceScore,jdbcType=REAL},
+      rankRate = #{rankRate,jdbcType=REAL},
+      minPrice = #{minPrice,jdbcType=REAL},
+      deliveryPrice = #{deliveryPrice,jdbcType=REAL},
+      foodScore = #{foodScore,jdbcType=REAL},
+      avatar = #{avatar,jdbcType=VARCHAR},
+      infos = #{infos,jdbcType=VARCHAR},
+      pics = #{pics,jdbcType=VARCHAR},
+      support = #{support,jdbcType=CHAR},
+      cardid = #{cardid,jdbcType=VARCHAR}
+    where shopid = #{shopid,jdbcType=VARCHAR}
+  </update>
+  <select id="selectBycardId" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from store_info
+    where cardid = #{cardId,jdbcType=VARCHAR}
+    limit #{offset},#{fn}
+  </select>
+  <select id="selectBycardAndshopId" parameterType="map" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from store_info
+    where cardid = #{cardId,jdbcType=VARCHAR}
+    and shopid=#{shopId,jdbcType=VARCHAR}
+  </select>
+</mapper>

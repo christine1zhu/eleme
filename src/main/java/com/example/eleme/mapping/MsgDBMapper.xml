@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.eleme.dao.MsgDBMapper">
+  <resultMap id="BaseResultMap" type="com.example.eleme.pojo.MsgDB">
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="sender_id" jdbcType="VARCHAR" property="sender_id" />
+    <result column="receiver_id" jdbcType="VARCHAR" property="receiver_id" />
+    <result column="chat_msg" jdbcType="VARCHAR" property="chat_msg" />
+    <result column="sgin_flag" jdbcType="CHAR" property="sgin_flag" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="create_time" />
+  </resultMap>
+  <resultMap type="com.example.eleme.pojo.HistoryMsg" id="HistoryMsgMap">
+  	<id column="chat_msg" jdbcType="VARCHAR" property="Msg" />
+  	 <result column="sender_id" jdbcType="VARCHAR" property="senderId" />
+  	 <result column="number" jdbcType="INTEGER" property="number" />
+  	 <result column="friendName" jdbcType="VARCHAR" property="friendName" />
+  	 <result column="friendImg" jdbcType="VARCHAR" property="friendImg" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, sender_id, receiver_id, chat_msg, sgin_flag, create_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from chatmsg
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="SelectbyId" parameterType="map" resultMap="BaseResultMap">
+   select 
+   <include refid="Base_Column_List" />
+   from chatmsg
+   where receiver_id = #{myIdString,jdbcType=VARCHAR}
+   and sender_id =#{toIdString,jdbcType=VARCHAR}
+   or receiver_id = #{toIdString,jdbcType=VARCHAR}
+   and sender_id =#{myIdString,jdbcType=VARCHAR}
+   order by create_time
+ </select>
+ <select id="queryMsgNumber" parameterType="map" resultMap="HistoryMsgMap">
+select B.*, A.*
+from
+(select count(*) as number
+from chatmsg 
+where sender_id=#{friend_id,jdbcType=VARCHAR} 
+and receiver_id=#{my_id,jdbcType=VARCHAR} and sgin_flag='待读')
+as A,
+(select chat_msg from chatmsg 
+where (sender_id=#{friend_id,jdbcType=VARCHAR}
+and receiver_id=#{my_id,jdbcType=VARCHAR})
+or
+(sender_id=#{my_id,jdbcType=VARCHAR}
+and receiver_id=#{friend_id,jdbcType=VARCHAR})
+order by create_time desc
+limit 1)
+as B
+ </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from chatmsg
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.example.eleme.pojo.MsgDB">
+    insert into chatmsg (id, sender_id, receiver_id, 
+      chat_msg, sgin_flag, create_time
+      )
+    values (#{id,jdbcType=VARCHAR}, #{sender_id,jdbcType=VARCHAR}, #{receiver_id,jdbcType=VARCHAR}, 
+      #{chat_msg,jdbcType=VARCHAR}, #{sgin_flag,jdbcType=CHAR}, #{create_time,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.eleme.pojo.MsgDB">
+    insert into chatmsg
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="sender_id != null">
+        sender_id,
+      </if>
+      <if test="receiver_id != null">
+        receiver_id,
+      </if>
+      <if test="chat_msg != null">
+        chat_msg,
+      </if>
+      <if test="sgin_flag != null">
+        sgin_flag,
+      </if>
+      <if test="create_time != null">
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sender_id != null">
+        #{sender_id,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver_id != null">
+        #{receiver_id,jdbcType=VARCHAR},
+      </if>
+      <if test="chat_msg != null">
+        #{chat_msg,jdbcType=VARCHAR},
+      </if>
+      <if test="sgin_flag != null">
+        #{sgin_flag,jdbcType=CHAR},
+      </if>
+      <if test="create_time != null">
+        #{create_time,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.eleme.pojo.MsgDB">
+    update chatmsg
+    <set>
+      <if test="sender_id != null">
+        sender_id = #{sender_id,jdbcType=VARCHAR},
+      </if>
+      <if test="receiver_id != null">
+        receiver_id = #{receiver_id,jdbcType=VARCHAR},
+      </if>
+      <if test="chat_msg != null">
+        chat_msg = #{chat_msg,jdbcType=VARCHAR},
+      </if>
+      <if test="sgin_flag != null">
+        sgin_flag = #{sgin_flag,jdbcType=CHAR},
+      </if>
+      <if test="create_time != null">
+        create_time = #{create_time,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.eleme.pojo.MsgDB">
+    update chatmsg
+    set sender_id = #{sender_id,jdbcType=VARCHAR},
+      receiver_id = #{receiver_id,jdbcType=VARCHAR},
+      chat_msg = #{chat_msg,jdbcType=VARCHAR},
+      sgin_flag = #{sgin_flag,jdbcType=CHAR},
+      create_time = #{create_time,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+   <update id="updateflagbyid" parameterType="map">
+    update chatmsg
+    set sgin_flag = #{toSign,jdbcType=CHAR}
+    where sgin_flag = #{oldSign,jdbcType=CHAR}
+    and receiver_id = #{myIdString,jdbcType=VARCHAR}
+   and sender_id =#{toIdString,jdbcType=VARCHAR}
+  </update>
+</mapper>
