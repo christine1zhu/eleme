@@ -36,8 +36,7 @@ export default {
         alert('账号或密码不能为空')
       } else {
         this.axios.post('/eleme/login', this.qs.stringify(_this.loginForm)).then(res => {
-          if (res.data) {
-            // res.data.data.body.token数据要看一下！！
+          if (res.data.msg === 'success') {
             _this.userToken = res.data.token
             sessionStorage.setItem('user', JSON.stringify(res.data.user))
             _this.changeLogin({ Authorization: _this.userToken })

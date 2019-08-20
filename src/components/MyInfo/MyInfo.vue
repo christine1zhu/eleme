@@ -10,7 +10,7 @@
           <li style="font-size:13px; margin: 10px 0">再忙，也要记得吃饭哟~</li>
           <li class="qiandao"><span class="icon iconfont">&#xe62e;</span>签到领十元红包</li>
         </ul>
-        <img class='photo' :src='img'>
+        <img class='photo' :src='img' @click="changeimg()">
       </div>
       <group class="choices" >
           <cell class="choices-item"  v-for='(item, index) in itemList' :title='item.title' is-link :key='index' @click.native="popout">
@@ -28,8 +28,20 @@
       <div class='title'>修改用户名</div>
       <input class='name' type="text" v-model='username'>
       <p>用户名只能修改一次，5-24个字</p>
-      <input class='submit' type='button' value="确认修改" @click='changename'>
+      <input id='file' type='button' value="确认修改" @click='changename()'>
     </div>
+    <div class="set-img" v-show='showImg'>
+      <div class='title'>修改头像</div>
+      <img class='photo' :src='img'>
+      <a class="file">上传头像
+        <input type="file" id="uploadfile"
+          @change="changepic(this)"
+          accept="image/jpg,image/jpeg,image/png,image/PNG">
+      </a>
+      <a class="file"  @click='confirmpic()'>确认修改
+        <input type="button">
+      </a>
+  </div>
   </div>
 </template>
 
@@ -49,7 +61,8 @@ export default {
         {title: '商务合作', icon: '&#xe656;'},
         {title: '设置', icon: '&#xe68d;'}
       ],
-      Setting: false
+      Setting: false,
+      showImg: false
     }
   },
   components: {
@@ -69,6 +82,47 @@ export default {
         this.Setting = true
       }
     },
+    changeimg () {
+      this.showImg = true
+    },
+    changepic () {
+      var reads = new FileReader()
+      // console.log(document.getElementById('uploadfile').files)
+      var f = document.getElementById('uploadfile').files[0]
+      reads.onload = function (e) {
+        // console.log(this.result)
+        // console.log(document.getElementsByClassName('photo'))
+        document.getElementsByClassName('photo')[0].src = this.result
+        document.getElementsByClassName('photo')[1].src = e.target.result
+      }
+      reads.readAsDataURL(f)
+    },
+    confirmpic () {
+      let formdata = new FormData()
+      var f = document.getElementById('uploadfile').files[0]
+      console.log(f)
+      formdata.append('file', f)
+      formdata.append('path', 'F:/SummerBankStudy/eleme1/static/UserImg')
+      formdata.append('userid', this.userObj.id)
+      let config = {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }
+      // let postdata = {data: formdata, user: this.userObj}
+      this.axios.post('/eleme/UpdateImg', formdata, config)
+        .then(res => {
+          if (res.data.msg === 'success') {
+            this.userObj.img = res.data.imgurl
+            sessionStorage.setItem('user', JSON.stringify(this.userObj))
+            this.showImg = false
+          } else {
+            alert('请上传头像')
+          }
+        }).catch(error => {
+          console.log(error)
+        })
+    },
     changename () {
       this.Setting = false
       this.userObj.name = this.username
@@ -85,13 +139,10 @@ export default {
           console.log(error)
         })
     }
-  }
-}
+  }}
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="less">
-
 .MyInfo{
   text-align:left;
   .header{
@@ -155,7 +206,7 @@ export default {
       padding:1vw 2vw;
     }
   }
-  .set-name{
+  .set-img,.set-name{
     position:fixed;
     top:0;
     left:0;
@@ -164,9 +215,10 @@ export default {
     z-index:40;
     background-color:white;
     text-align:center;
-    .title{
+       .title{
       padding:20px;
-    }
+    }}
+  .set-name{
     .name{
       border-style:none;
       box-shadow: 0px 3px whitesmoke;
@@ -185,6 +237,39 @@ export default {
       border-radius:5px;
       background-color:#287DFA;
       color:white;
+    }
+  }
+  .set-img{
+    .photo{
+      width: 80vw;
+      height: 80vw;
+      border-radius: 10px;
+    }
+    .file{
+      position: relative;
+      display: inline-block;
+      background: #D0EEFF;
+      border: 1px solid #99D3F5;
+      border-radius: 4px;
+      padding: 4px 12px;
+      overflow: hidden;
+      color: #1E88C7;
+      text-decoration: none;
+      text-indent: 0;
+      line-height: 20px;
+    }
+    .file input {
+        position: absolute;
+        font-size: 100px;
+        right: 0;
+        top: 0;
+        opacity: 0;
+    }
+    .file:hover {
+        background: #AADFFD;
+        border-color: #78C3F3;
+        color: #004974;
+        text-decoration: none;
     }
   }
 }

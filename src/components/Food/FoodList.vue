@@ -24,8 +24,6 @@
         <div class='seller-page' v-if='index===2'>商家</div>
       </div>
     </div>
-    <!-- <p>{{ $route.params.CardId}}</p>
-    <p>{{ $route.params.shopId}}</p> -->
   </div>
 </template>
 
