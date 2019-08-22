@@ -19,6 +19,8 @@ public class UserServiceImpl implements IUserService {
 	public User selectByUsername(String Name){
 		return this.userMapper.selectByUsername(Name);
 	}
+	
+	//根据id更新用户
 	@Override
 	public int updateUserById(User record){
 		return this.userMapper.updateByPrimaryKey(record);

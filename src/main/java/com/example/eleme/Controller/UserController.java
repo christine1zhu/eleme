@@ -92,6 +92,14 @@ public class UserController {
 		}
 	}
 	
+	/**
+	 * 
+	 * @param file 图片文件
+	 * @param userId 用户id
+	 * @param path 图片存储路径
+	 * @param request
+	 * @return 更新图片信息
+	 */
 	@ResponseBody
 	@PostMapping("/UpdateImg")
 	public JSONObject UpdateImg(@RequestParam(value = "file") MultipartFile file,
