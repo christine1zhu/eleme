@@ -101,27 +101,31 @@ export default {
       let formdata = new FormData()
       var f = document.getElementById('uploadfile').files[0]
       console.log(f)
-      formdata.append('file', f)
-      formdata.append('path', 'F:/SummerBankStudy/eleme1/static/UserImg')
-      formdata.append('userid', this.userObj.id)
-      let config = {
-        headers: {
-          'Content-Type': 'multipart/form-data'
-        }
-      }
-      // let postdata = {data: formdata, user: this.userObj}
-      this.axios.post('/eleme/UpdateImg', formdata, config)
-        .then(res => {
-          if (res.data.msg === 'success') {
-            this.userObj.img = res.data.imgurl
-            sessionStorage.setItem('user', JSON.stringify(this.userObj))
-            this.showImg = false
-          } else {
-            alert('请上传头像')
+      if (!f) {
+        alert('选择图片')
+      } else {
+        formdata.append('file', f)
+        formdata.append('path', 'F:/SummerBankStudy/eleme1/static/UserImg')
+        formdata.append('userid', this.userObj.id)
+        let config = {
+          headers: {
+            'Content-Type': 'multipart/form-data'
           }
-        }).catch(error => {
-          console.log(error)
-        })
+        }
+        // let postdata = {data: formdata, user: this.userObj}
+        this.axios.post('/eleme/UpdateImg', formdata, config)
+          .then(res => {
+            if (res.data.msg === 'success') {
+              this.userObj.img = res.data.imgurl
+              sessionStorage.setItem('user', JSON.stringify(this.userObj))
+              this.showImg = false
+            } else {
+              alert('请上传头像')
+            }
+          }).catch(error => {
+            console.log(error)
+          })
+      }
     },
     changename () {
       this.Setting = false
